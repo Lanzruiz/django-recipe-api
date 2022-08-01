@@ -21,3 +21,10 @@ class CaclTest(SimpleTestCase):
         res = calc.subtract(5, 2)
 
         self.assertEqual(res, 3)
+
+    def test_multiply_numbers(self):
+        """ Test multiply the numbers """
+
+        res = calc.multiply(2, 2)
+
+        self.assertEqual(res, 4)
