@@ -1,8 +1,5 @@
 CURRENT_DIRECTORY := $(shell pwd)
 
-TESTSCOPE = apps
-TESTFLAGS = --with-timer --timer-top-n 10 --keepdb
-
 help:
 	@echo "Docker Compose Help"
 	@echo "-----------------------"
@@ -40,6 +37,9 @@ build:
 
 test:
 	@docker-compose run --rm app sh -c "python manage.py test"
+
+lint:
+	@docker-compose run --rm app sh -c "flake8"
 
 testwarn:
 	@docker-compose run --rm app python -Wall manage.py test ${TESTSCOPE} ${TESTFLAGS}
