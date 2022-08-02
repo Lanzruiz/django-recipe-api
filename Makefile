@@ -38,7 +38,10 @@ build:
 test:
 	@docker-compose run --rm app sh -c "python manage.py test"
 
-lint:
+db-check:
+	@docker-compose run --rm app sh -c "python manage.py wait_for_db"
+
+check-lint:
 	@docker-compose run --rm app sh -c "flake8"
 
 testwarn:
