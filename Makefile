@@ -23,6 +23,9 @@ start:
 stop:
 	@docker-compose stop
 
+down:
+	@docker-compose down
+
 status:
 	@docker-compose ps
 
@@ -43,6 +46,12 @@ db-check:
 
 check-lint:
 	@docker-compose run --rm app sh -c "flake8"
+
+migrations:
+	@docker-compose run --rm app sh -c "python manage.py makemigrations"
+
+apply-migrations:
+	@docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py migrate"
 
 testwarn:
 	@docker-compose run --rm app python -Wall manage.py test ${TESTSCOPE} ${TESTFLAGS}
