@@ -47,6 +47,9 @@ db-check:
 check-lint:
 	@docker-compose run --rm app sh -c "flake8"
 
+create-superuser:
+	@docker-compose run --rm app sh -c "python manage.py createsuperuser"
+
 migrations:
 	@docker-compose run --rm app sh -c "python manage.py makemigrations"
 
