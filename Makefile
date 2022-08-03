@@ -53,6 +53,9 @@ create-superuser:
 migrations:
 	@docker-compose run --rm app sh -c "python manage.py makemigrations"
 
+celery-up:
+	@docker-compose run --rm app sh -c "celery -A test_celery flower --port=5555"
+
 apply-migrations:
 	@docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py migrate"
 
